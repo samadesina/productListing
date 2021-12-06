@@ -18,8 +18,13 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/products', 'ProductController@index');
-$router->get('/product/{id}', 'ProductController@show');
+$router->get('/products/{id}', 'ProductController@show');
 $router->post('/product', 'ProductController@create');
 $router->put('/product/{id}', 'ProductController@update');
 $router->delete('/product/{id}', 'productController@delete');
 $router->get('add/{a}/{b}', 'BalanceController@addNumbers');
+$router->get('/product/{id}', 'ProductController@getProductName');
+$router->post('category', 'CategoryController@createCategory');
+$router->get('categories', 'CategoryController@getAllCategories');
+$router->get('categoryName/{id}', 'CategoryController@getCategoryName');
+$router->get('productcounter', 'ProductController@countProduct');

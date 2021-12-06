@@ -27,14 +27,21 @@ class ProductController extends Controller
 
         public function create(Request $request){
 
-            $product = new Product();
+            try {
+                $product = new Product();
             $product->name = $request->name;
             $product->price = $request->price;
             $product->category =$request->category;
 
             $product->save();
-
             return response()->json("Product created succesfully" );
+            } catch (\Throwable $th) {
+                return response()->json('invalid entry');
+            }
+
+            
+
+           
 
         }
 
@@ -65,6 +72,23 @@ class ProductController extends Controller
              } catch (\Throwable $th) {
                 //throw $th;
             }
+
+
+        }
+
+        public function getProductName($id){
+            try {
+               $productName= Product::where('id', $id)->value('name');
+               return response()->json($productName);
+            } catch (\Throwable $th) {
+                return response()-json('invalid entry');
+            }
+        }
+
+        public function countProduct(){
+            $products =  product::all();
+            $productCount = count($products);
+            return response()->json($productCount);
 
         }
 

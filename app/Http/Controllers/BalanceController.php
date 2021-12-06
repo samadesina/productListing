@@ -11,10 +11,13 @@ class BalanceController extends Controller
     
         
 
-        public function addNumbers(Request $request, $savings){
+        public function addNumbers(Request $request){
             try {
-                $balance = new Balance();
+                $bal = new Balance();
+
+                $bal->balance = $request->balance;
                 $newBal = $savings;
+
 
                 return response()->json("the balance as at " .now() ."is" .$newBal );  
                 
